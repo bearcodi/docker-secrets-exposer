@@ -23,5 +23,12 @@
             "Tests\\": "tests/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bearcodi\\DockerSecrets\\ServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "stable"
 }
