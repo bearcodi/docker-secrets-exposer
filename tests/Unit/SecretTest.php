@@ -17,4 +17,19 @@ class SecretTest extends TestCase
 
         $secret = new Secret($nonExistantSecretFile);
     }
+
+    /** @test */
+    public function it_exposes_a_secret_when_casted_or_interpolated_as_a_string()
+    {
+        $secretFile = $this->dockerSecretFile('pied', 'piper');
+
+        $secretValue = trim(file_get_contents($secretFile));
+
+        $secret = new Secret($secretFile);
+
+        $this->assertEquals($secretValue, (string) $secret);
+        $this->assertEquals($secretValue, "$secret");
+        $this->assertEquals($secretValue, "{$secret}");
+        $this->assertEquals($secretValue, sprintf("%s", $secret));
+    }
 }
