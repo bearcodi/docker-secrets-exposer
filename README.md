@@ -1,5 +1,6 @@
 # Docker Secrets Expander
 
+[![Build Status](https://travis-ci.org/bearcodi/docker-secrets-exposer.svg?branch=master)](https://travis-ci.org/bearcodi/docker-secrets-exposer)
 ![laravel5.7](https://img.shields.io/badge/laravel-5.7-orange.svg?logo=laravel)
 ![php7](https://img.shields.io/badge/php-7.1-blue.svg)
 
