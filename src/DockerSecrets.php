@@ -4,8 +4,6 @@ namespace Bearcodi\DockerSecrets;
 
 /**
  * Docker secrets resolver for app configuration.
- *
- * @version     0.1.0
  */
 class DockerSecrets
 {

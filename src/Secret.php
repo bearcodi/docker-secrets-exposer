@@ -11,8 +11,6 @@ use Bearcodi\DockerSecrets\Exceptions\SecretNotFoundException;
  * load and expose a Docker secret to your app.
  *
  * @example     `new \Bearcodi\DockerSecrets\Secret('dockersecret://super-secret')->expose()`
- *
- * @version     0.1.0
  */
 class Secret
 {
