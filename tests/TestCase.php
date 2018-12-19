@@ -2,14 +2,13 @@
 
 namespace Tests;
 
-use Tests\DockerSecretFile;
 use Bearcodi\DockerSecrets\ServiceProvider;
 use Orchestra\Testbench\TestCase as TestBase;
 
 class TestCase extends TestBase
 {
     /**
-     * Creates a docker secret file
+     * Creates a docker secret file.
      * @param  [type] $secret [description]
      * @param  [type] $value  [description]
      * @return [type]         [description]
@@ -26,7 +25,7 @@ class TestCase extends TestBase
      */
     public static function setUpBeforeClass()
     {
-        putenv('DOCKER_SECRETS_BASE_PATH=' . DockerSecretFile::dockerSecretStoragePath());
+        putenv('DOCKER_SECRETS_BASE_PATH='.DockerSecretFile::dockerSecretStoragePath());
     }
 
     /**
@@ -38,7 +37,7 @@ class TestCase extends TestBase
     {
         parent::tearDown();
 
-        if (!! getenv('CLEANUP_TEST_DOCKER_SECRETS')) {
+        if ((bool) getenv('CLEANUP_TEST_DOCKER_SECRETS')) {
             DockerSecretFile::cleanup();
         }
     }
@@ -52,7 +51,6 @@ class TestCase extends TestBase
      */
     protected function getPackageProviders($app)
     {
-
         return [ServiceProvider::class];
     }
 }
