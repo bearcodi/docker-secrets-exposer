@@ -23,8 +23,10 @@ class TestCase extends TestBase
      *
      * @return  void
      */
-    public static function setUpBeforeClass()
+    public function setUp()
     {
+        parent::setUp();
+
         putenv('DOCKER_SECRETS_BASE_PATH='.DockerSecretFile::dockerSecretStoragePath());
     }
 

@@ -13,6 +13,8 @@ class SecretTest extends TestCase
     {
         $nonExistantSecret = 'doesnt-exist';
 
+        putenv("DOCKER_SECRETS_BASE_PATH");
+
         $this->expectException(SecretNotFoundException::class);
 
         $secret = new Secret($nonExistantSecret);
