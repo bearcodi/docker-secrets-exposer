@@ -3,6 +3,7 @@ namespace Tests;
 
 use SplFileObject;
 use DirectoryIterator;
+use Bearcodi\DockerSecrets\Secret;
 
 /**
  * Docker secret file manager for tests.
@@ -71,6 +72,18 @@ class DockerSecretFile extends SplFileObject
     public function path()
     {
         return $this->getRealPath();
+    }
+
+    /**
+     * Generate a Docker secret DSN from the filename.
+     *
+     * @uses    Bearcodi\DockerSecrets\Secret::DOCKER_SECRET_DSN
+     *
+     * @return  string
+     */
+    public function dsn()
+    {
+        return Secret::DOCKER_SECRET_DSN . $this->getFilename();
     }
 
     /**
