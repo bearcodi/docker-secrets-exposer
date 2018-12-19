@@ -82,7 +82,7 @@ class DockerSecretFile extends SplFileObject
      */
     public function dsn()
     {
-        return Secret::DOCKER_SECRET_DSN . $this->getFilename();
+        return Secret::DOCKER_SECRET_DSN.$this->getFilename();
     }
 
     /**

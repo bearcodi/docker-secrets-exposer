@@ -8,7 +8,7 @@ use Bearcodi\DockerSecrets\DockerSecrets;
 
 class DockerSecretsTest extends TestCase
 {
-    /** @test */
+    /* @test */
     // public function it_can_expand_a_docker_secret()
     // {
     //     $dockerSecret = 'dockersecret://pied';
