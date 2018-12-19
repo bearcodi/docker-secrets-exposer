@@ -1,8 +1,15 @@
 language: php
 php:
- - '7.1'
- - '7.2'
- - '7.3'
-install:
-  - composer install
-script: phpunit
+- '7.1'
+- '7.2'
+- '7.3'
+before_script:
+- travis_retry composer self-update
+- travis_retry composer install --no-interaction --prefer-source --dev
+script:
+- phpunit --coverage-clover=coverage.xml
+after_success:
+- bash <(curl -s https://codecov.io/bash)
+global:
+  secure:
+    rOcGea64B7JVg2Pip62nN6Uelb+ZLCbsU4wX5R+YMI5twnqKLVJXbMoRBuDy+lCm3dQXzcmGZzYSQRU7q0G8ObCxIRalmsm2UheKryQOjaVjuLgmBLr3hYyNt3rjvlzAQzZb8n/O0OHw09YxYJxPVc4Q2dqecZjUPHFDGoVB1Rll1pMcgVH9kOw/f8oY17rRwild77IBIWpfQI8Xa4DjG1wr7XkuotPvTfUScFzr4iqWzhaDksisdDMSpdpm3jFp6jzgrrP4wSkg2uYMBC/3OX0jeJNYFYWs/7/iIamemoxGgAieTgMfP7LSy0QQ2G19Q6NxsaxaSNFu0PvonWSnMYY8CvQj9KkA9vNgL0tIoSaheKHLZZ6VOMKHSanH0OWDpaLxZOV9s1CThzkiarM6SN1E3r3FUHCzne+zbNDrHnn6vwPhIqfLZ0+vNWcTIRhUF6r+oIgIsN3ZHUdb4GEYuioxIm/mjglFHXOGTMdie4ujNz0QqtFVibclNkGfGQzSUvZ8LTdwqwa7SJumNIOFaMq/1Ybtu6ezbBXycuBqp549FGKz7tXevCpKl/lEtHh+DS0tczKXElg8uZz7bJF9DH9aeBJ06una+nYYZC3FPs5qUDQjrvdv8gdoOCgweMOksgnOzqf5CDridxtmjk0KL8xOiXo0eGso513fGtQaVyk=
