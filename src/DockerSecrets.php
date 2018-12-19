@@ -4,46 +4,49 @@ namespace Bearcodi\DockerSecrets;
 
 use Bearcodi\DockerSecrets\Secret;
 
-class Secret
+/**
+ * Docker secrets resolver for app configuration.
+ *
+ * @package Bearcodi\DockerSecrets
+ * @version     0.1.0
+ */
+class DockerSecrets
 {
-    const DOCKER_SECRET_DEFAULT_PATH = '/run/secrets/';
-
-    const DOCKER_SECRET_DSN = 'dockersecret://';
-
-    protected $original;
-
-    protected $dockerSecretsPath;
-
-    public function __construct($dockerSecretsPath = null)
-    {
-        $this->dockerSecretsPath = $dockerSecretsPath ? rtrim($dockerSecretsPath, '/') . '/' : self::DOCKER_SECRET_DEFAULT_PATH;
-    }
-
-    public function expand($config, $parentKey = '')
+    /**
+     * Recursively parse a config array and attempt to resolve any docker secrets.
+     *
+     * @param   mixed   $config
+     * @param   string  $parentKey  For recursively setting a nested config key
+     *
+     * @return  self
+     */
+    public function parse($config, $parentKey = '')
     {
         foreach ($config as $key => $value) {
             $compoundedKey = implode('.', array_filter([$parentKey, $key]));
 
             if (is_array($value)) {
-                $this->expand($value, $compoundedKey);
+                $this->parse($value, $compoundedKey);
             }
 
-            if ($this->isDockerSecret($value)) {
-
-                $this->attachDockerSecret($compoundedKey, $value);
-            }
+            $this->resolveDockerSecret($compoundedKey, $value);
         }
+
+        return $this;
     }
 
-    protected function isDockerSecret($value)
+    /**
+     * Resolve a docker secret replacing the config string DSN.
+     *
+     * @param   string  $key        The config key to update, ie. app.name
+     * @param   string  $secret     The secret DSN to evaluate.
+     *
+     * @return  Bearcodi\DockerSecrets\Secret
+     */
+    protected function resolveDockerSecret($key, $secret)
     {
-        return is_string($value) &&
-               substr($value, 0, strlen(self::DOCKER_SECRET_DSN)) === self::DOCKER_SECRET_DSN;
-    }
-
-    protected function attachDockerSecret($key, $value)
-    {
-        $secretFile = str_replace(self::DOCKER_SECRET_DSN, $this->dockerSecretsPath, $value);
-        config(["{$key}" => new DockerSecret($secretFile)]);
+        if (Secret::check($secret)) {
+            config(["{$key}" => new Secret($secret)]);
+        }
     }
 }
