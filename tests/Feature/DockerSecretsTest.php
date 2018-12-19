@@ -40,5 +40,4 @@ class DockerSecretsTest extends TestCase
         $this->assertEquals('piper', config($configKey)->expose());
         $this->assertEquals(getenv($envKey), $dockerSecret->dsn());
     }
-
 }
