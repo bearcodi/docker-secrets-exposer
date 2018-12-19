@@ -12,18 +12,17 @@ use Bearcodi\DockerSecrets\Exceptions\SecretNotFoundException;
  *
  * @example     `new \Bearcodi\DockerSecrets\Secret('dockersecret://super-secret')->expose()`
  *
- * @package     Bearcodi\DockerSecrets
  * @version     0.1.0
  */
 class Secret
 {
     /**
-    * Docker secrets base path for Docker secrets.
-    *
-    * @see     https://docs.docker.com/engine/swarm/secrets/#how-docker-manages-secrets
-    *
-    * @var     string
-    */
+     * Docker secrets base path for Docker secrets.
+     *
+     * @see     https://docs.docker.com/engine/swarm/secrets/#how-docker-manages-secrets
+     *
+     * @var     string
+     */
     const DOCKER_SECRETS_BASE_PATH = '/run/secrets/';
 
     /**
@@ -34,10 +33,10 @@ class Secret
     const DOCKER_SECRET_DSN = 'dockersecret://';
 
     /**
-    * The determined Docker secrets storage base path for secret files.
-    *
-    * @var     string
-    */
+     * The determined Docker secrets storage base path for secret files.
+     *
+     * @var     string
+     */
     protected $dockerSecretsBasePath;
 
     /**
@@ -121,7 +120,7 @@ class Secret
         $basePathOverride = getenv('DOCKER_SECRETS_BASE_PATH');
 
         $this->dockerSecretsBasePath = $basePathOverride
-            ? rtrim($basePathOverride, '/') . '/'
+            ? rtrim($basePathOverride, '/').'/'
             : self::DOCKER_SECRETS_BASE_PATH;
 
         return $this;
@@ -148,10 +147,10 @@ class Secret
     }
 
     /**
-    * Read the Docker secret from the file
-    *
-    * @return  string
-    */
+     * Read the Docker secret from the file.
+     *
+     * @return  string
+     */
     public function __toString()
     {
         return trim(file_get_contents($this->dockerSecretFilePath));

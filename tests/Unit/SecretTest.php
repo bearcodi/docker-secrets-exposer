@@ -28,7 +28,7 @@ class SecretTest extends TestCase
         $this->assertEquals($secretFile->content(), (string) $secret);
         $this->assertEquals($secretFile->content(), "$secret");
         $this->assertEquals($secretFile->content(), "{$secret}");
-        $this->assertEquals($secretFile->content(), sprintf("%s", $secret));
+        $this->assertEquals($secretFile->content(), sprintf('%s', $secret));
     }
 
     /** @test */
@@ -45,7 +45,7 @@ class SecretTest extends TestCase
     /** @test */
     public function it_can_check_if_a_string_is_a_valid_docker_secret_dsn()
     {
-        $validDockerSecretDsn = Secret::DOCKER_SECRET_DSN . 'valid';
+        $validDockerSecretDsn = Secret::DOCKER_SECRET_DSN.'valid';
         $invalidDockerSecretDsn = 'invalid';
 
         $this->assertTrue(Secret::check($validDockerSecretDsn));

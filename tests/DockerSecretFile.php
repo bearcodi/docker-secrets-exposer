@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests;
 
 use SplFileObject;
@@ -6,8 +7,6 @@ use DirectoryIterator;
 
 /**
  * Docker secret file manager for tests.
- *
- * @package Tests
  */
 class DockerSecretFile extends SplFileObject
 {
@@ -35,7 +34,7 @@ class DockerSecretFile extends SplFileObject
      */
     public static function dockerSecretStoragePath($secret = '')
     {
-        return __DIR__ . '/fixtures/secrets/' . $secret;
+        return __DIR__.'/fixtures/secrets/'.$secret;
     }
 
     /**
@@ -81,6 +80,7 @@ class DockerSecretFile extends SplFileObject
     public function __toString()
     {
         $this->rewind();
+
         return $this->fread($this->getSize());
     }
 }
