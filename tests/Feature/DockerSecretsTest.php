@@ -8,6 +8,7 @@ use Bearcodi\DockerSecrets\DockerSecrets;
 
 class DockerSecretsTest extends TestCase
 {
+
     /** @test */
     public function it_can_expand_a_docker_secret()
     {
@@ -24,4 +25,5 @@ class DockerSecretsTest extends TestCase
 
         $this->assertEquals('piper', (string) $secret);
     }
+
 }
