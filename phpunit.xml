@@ -23,6 +23,6 @@
         </whitelist>
     </filter>
     <php>
-
+        <env name="CLEANUP_TEST_DOCKER_SECRETS" value="true" />
     </php>
 </phpunit>

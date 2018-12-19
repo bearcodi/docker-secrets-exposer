@@ -23,13 +23,11 @@ class SecretTest extends TestCase
     {
         $secretFile = $this->dockerSecretFile('pied', 'piper');
 
-        $secretValue = trim(file_get_contents($secretFile));
+        $secret = new Secret($secretFile->path());
 
-        $secret = new Secret($secretFile);
-
-        $this->assertEquals($secretValue, (string) $secret);
-        $this->assertEquals($secretValue, "$secret");
-        $this->assertEquals($secretValue, "{$secret}");
-        $this->assertEquals($secretValue, sprintf("%s", $secret));
+        $this->assertEquals($secretFile->content(), (string) $secret);
+        $this->assertEquals($secretFile->content(), "$secret");
+        $this->assertEquals($secretFile->content(), "{$secret}");
+        $this->assertEquals($secretFile->content(), sprintf("%s", $secret));
     }
 }
