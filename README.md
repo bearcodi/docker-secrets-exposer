@@ -1,5 +1,8 @@
 # Docker Secrets Expander
 
+![laravel5.7](https://img.shields.io/badge/laravel-5.7-orange.svg?logo=laravel)
+![php7](https://img.shields.io/badge/php-7.1-blue.svg)
+
 A drop in package when using Laravel in a Docker Swarm setup and wanting to expand docker secrets easily.
 
 ## But why?
@@ -34,7 +37,6 @@ DB_PASSWORD=dockersecrets://db-password
 > either cast it to a string `(string) config("CONFIG_KEY")` or use the `expose()` method on the return value as it is an instance of `Bearcodi\DockerSecrets\Secret`
 
 The secret is then parsed and replaced with the Secret handler, when evalutated in a string usage the secret file value is returned on demand without exposing it in your applications environment.
-
 
 ## Laravel environment key exclusions
 
