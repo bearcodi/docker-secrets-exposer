@@ -1,7 +1,7 @@
 {
-    "name": "tron/docker-secrets",
+    "name": "bearcodi/docker-secrets-exposer",
     "description": "Docker secrets expander for Laravel environment configuration.",
-    "type": "laravel",
+    "type": "package",
     "license": "MIT",
     "authors": [
         {
